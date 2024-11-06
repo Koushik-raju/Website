@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #ffffff;
+        }
+
+        .contact-info {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 600px;
+        }
+
+        .contact-info h2 {
+            color: #ffffff;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .contact-info p {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #1e90ff;
+        }
+
+        .map {
+            margin: 20px auto;
+            max-width: 600px;
+            height: 300px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #1c1c1c;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 18px;
+        }
+        .navbar a{
+    font-size: 18px;
+    color: #ededed;
+    text-decoration: none; /* to remove the underline under the link text */
+    font-weight: 500; /* to increase the thickness of text */
+    margin-left: 35px; /* for space between "Home" "About" "Portfolio" ...etc */
+    transition: .3s; /* for smooth changeing of color when hovered on text */
+}
+
+.navbar a:hover,
+.navbar a.active{
+    color: #00abf0; 
+}
+
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-list > li {
+    position: relative;
+}
+
+.nav-list a {
+    display: block;
+    padding: 10px 0px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-list a:hover {
+    background-color: #000000;
+}
+
+/* Dropdown Styles */
+.dropdown, .nested-dropdown {
+    display: none; /* Hide dropdowns by default */
+    position: absolute;
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 200px;
+}
+
+.nav-list li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown li:hover .nested-dropdown {
+    display: block; /* Show nested dropdown on hover */
+    left: 100%; /* Position it to the right of the parent */
+    top: 0;     /* Aligns with the top of the parent */
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <ul class="nav-list">
+            <li><a href="./index.html" class="active">Home</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <li><a href="./Certification.html">Certifications</a></li>
+            <li>
+                <a href="#">Mini Projects</a>
+                <ul class="dropdown">
+                    <!-- <li><a href="#">Task</a></li> -->
+                    <li><a href="./ScheduleManager.html">Task Manager</a></li>
+                    <li>
+                        <a href="#">Games</a>
+                        <ul class="nested-dropdown">
+                            <li><a href="./RPS.html">Rock Paper scissors</a></li>
+                            <li><a href="./Snake.html">Snake</a></li>
+                            <li><a href="./TicTacToe.html">Tic Tac Toe</a></li>
+                            <li><a href="./2048.html">2048</a></li>
+                            <li><a href="./Pong.html">Pong</a></li>
+                            <li><a href="./MemoryCard.html">Memory Card</a></li>
+                            <li><a href="./WhackAMole.html">Whack A Mole</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        </nav>
+        <h1>Get in Touch</h1>
+    </header>
+
+    <section class="contact-info">
+        <h2>Contact Me</h2>
+        <p><i class="fas fa-phone"></i> +91 9972072647</p>
+        <p><i class="fas fa-envelope"></i> koushikrajusr@gmail.com</p>
+        <p><i class="fas fa-map-marker-alt"></i> #3 , Natraja Layout , JP Nagar 6th Phase , Bangalore 560078</p>
+        <div class="social-media">
+            <a href="https://www.hackerrank.com/profile/koushikrajusr"><i class='bx bxl-instagram' ></i></a>
+            <a href="https://x.com/koushikrajusr"><i class='bx bxl-twitter' ></i></a>
+            <a href="https://www.linkedin.com/in/koushik-raju-963489221/"><i class='bx bxl-linkedin' ></i></a>
+        </div>
+    </section>
+
+    <!-- <section class="map">
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345099076!2d144.95373531531682!3d-37.8162799797519!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad642af0f0e3b2d%3A0x5045675218ce6c0!2sExample%20Address!5e0!3m2!1sen!2sau!4v1633046652103!5m2!1sen!2sau"
+            width="600"
+            height="300"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"></iframe>
+    </section> -->
+
+    <footer>
+        <p>I’d love to hear from you!</p>
+    </footer>
+
+</body>
+</html>

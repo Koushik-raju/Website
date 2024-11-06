@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flappy Bird Clone</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        canvas { border: 1px solid black; background-color: lightblue; }
+    </style>
+</head>
+<body>
+    <h1>Flappy Bird Clone</h1>
+    <canvas id="flappy" width="400" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('flappy');
+        const ctx = canvas.getContext('2d');
+        const bird = { x: 50, y: 150, width: 20, height: 20, gravity: 0.5, lift: -10, velocity: 0 };
+        const pipes = [];
+        let frame = 0;
+        let score = 0;
+
+        document.addEventListener('keydown', () => {
+            bird.velocity += bird.lift;
+        });
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = 'yellow';
+            ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+            bird.velocity += bird.gravity;
+            bird.y += bird.velocity;
+
+            if (bird.y + bird.height >= canvas.height) {
+                alert('Game Over! Your score: ' + score);
+                resetGame();
+            }
+
+            if

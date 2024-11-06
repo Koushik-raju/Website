@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: rgb(0, 0, 0); color: aliceblue; }
+        .board { display: grid; grid-template-columns: repeat(3, 100px); grid-gap: 5px; }
+        .cell { width: 100px; height: 100px; background-color: rgb(137, 137, 137); display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div class="board" id="board"></div>
+    <button onclick="resetGame()">Reset</button>
+    <script>
+        let board = ['', '', '', '', '', '', '', '', ''];
+        let currentPlayer = 'X';
+        const boardElement = document.getElementById('board');
+
+        function render() {
+            boardElement.innerHTML = '';
+            board.forEach((cell, index) => {
+                const cellElement = document.createElement('div');
+                cellElement.className = 'cell';
+                cellElement.innerText = cell;
+                cellElement.onclick = () => makeMove(index);
+                boardElement.appendChild(cellElement);
+            });
+        }
+
+        function makeMove(index) {
+            if (board[index] === '') {
+                board[index] = currentPlayer;
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                render();
+                checkWinner();
+            }
+        }
+
+        function checkWinner() {
+            const winningCombinations = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8],
+                [0, 3, 6], [1, 4, 7], [2, 5, 8],
+                [0, 4, 8], [2, 4, 6]
+            ];
+            for (const combination of winningCombinations) {
+                const [a, b, c] = combination;
+                if (board[a] && board[a] === board[b] && board[a] === board[c]) {
+                    alert(`${board[a]} wins!`);
+                    resetGame();
+                    return;
+                }
+            }
+            if (!board.includes('')) alert('Draw!');
+        }
+
+        function resetGame() {
+            board = ['', '', '', '', '', '', '', '', ''];
+            currentPlayer = 'X';
+            render();
+        }
+
+        render();
+    </script>
+</body>
+</html>

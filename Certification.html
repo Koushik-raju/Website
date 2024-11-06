@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certifications</title>
+    <style>
+        :root {
+            --bg-color: #18181a; /* Dark background */
+            --text-color: #ffffff; /* White text */
+            --accent-color: #2196F3; /* Blue accent color */
+            --border-color: #2196F3; /* Blue border color */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: var(--accent-color); /* Blue for headings */
+        }
+
+        .certification-container {
+            display: flex; /* Use Flexbox for layout */
+            flex-wrap: wrap; /* Allow wrapping to next line */
+            justify-content: space-between; /* Space between columns */
+            gap: 40px; /* Space between items */
+            width: 1200px;
+        }
+
+        .certification {
+            flex: 1 1 calc(50% - 20px); /* Two columns with space */
+            border: 2px solid var(--border-color); /* Blue border */
+            border-radius: 5px;
+            padding: 15px;
+            background-color: rgba(105, 92, 92, 0.159); /* Slightly lighter background for cards */
+            box-sizing: border-box; /* Include padding and border in element's total width */
+        }
+
+        .certification img {
+            max-width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        a {
+            color: var(--accent-color); /* Blue for links */
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .certification {
+                flex: 1 1 100%; /* Stack in one column on smaller screens */
+            }
+        }
+
+        .navbar a{
+    font-size: 18px;
+    color: #ededed;
+    text-decoration: none; /* to remove the underline under the link text */
+    font-weight: 500; /* to increase the thickness of text */
+    margin-left: 35px; /* for space between "Home" "About" "Portfolio" ...etc */
+    transition: .3s; /* for smooth changeing of color when hovered on text */
+}
+
+.navbar a:hover,
+.navbar a.active{
+    color: #00abf0; 
+}
+
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.nav-list > li {
+    position: relative;
+}
+
+.nav-list a {
+    display: block;
+    padding: 10px 0px;
+    color: white;
+    text-decoration: none;
+}
+
+.nav-list a:hover {
+    background-color: #000000;
+}
+
+/* Dropdown Styles */
+.dropdown, .nested-dropdown {
+    display: none; /* Hide dropdowns by default */
+    position: absolute;
+    background-color: #333;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 200px;
+
+}
+
+.nav-list li:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown li:hover .nested-dropdown {
+    display: block; /* Show nested dropdown on hover */
+    left: 100%; /* Position it to the right of the parent */
+    top: 0;     /* Aligns with the top of the parent */
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-list">
+            <li><a href="./index.html" class="active">Home</a></li>
+            <li><a href="./portfolio.html">Portfolio</a></li>
+            <!-- <li><a href="./Certification.html">Certifications</a></li> -->
+            <li>
+                <a href="#">Mini Projects</a>
+                <ul class="dropdown">
+                    <!-- <li><a href="#">Task</a></li> -->
+                    <li><a href="./ScheduleManager.html">Task Manager</a></li>
+                    <li>
+                        <a href="#">Games</a>
+                        <ul class="nested-dropdown">
+                            <!-- <li><a href="./RPS.html">Rock Paper scissors</a></li> -->
+                            <li><a href="./Snake.html">Snake</a></li>
+                            <li><a href="./TicTacToe.html">Tic Tac Toe</a></li>
+                            <li><a href="./2048.html">2048</a></li>
+                            <li><a href="./Pong.html">Pong</a></li>
+                            <li><a href="./MemoryCard.html">Memory Card</a></li>
+                            <!-- <li><a href="./WhackAMole.html">Whack A Mole</a></li> -->
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+        </nav>
+        <h1>Koushik Raju</h1>
+        <h2>Certifications</h2>
+    </header>
+
+    <main>
+        <div class="certification-container">
+            <div class="certification">
+                <img src="./Cloud.jpeg" alt="Certification Name">
+                <h3>Cloud Computing (AWS)</h3>
+                <p>Issuing Organization: Indigeneous Tech Pvt Ltd</p>
+                <p>Date Obtained: April 2022</p>
+            </div>
+            
+            <div class="certification">
+                <img src="./Blockchain.jpeg" alt="Certification Name">
+                <h3>Blockchain Professional</h3>
+                <p>Issuing Organization: Indigeneous Tech Pvt Ltd</p>
+                <p>Date Obtained: September 2022</p>
+            </div>
+    
+            <div class="certification">
+                <img src="./React.jpeg" alt="Certification Name">
+                <h3>React JS</h3>
+                <p>Issuing Organization: Simplilearn</p>
+                <p>Date Obtained: Nov 2022</p>
+            </div>
+    
+            <div class="certification">
+                <img src="./NodeJS.jpeg" alt="Certification Name">
+                <h3>NodeJS</h3>
+                <p>Issuing Organization: Simplilearn</p>
+                <p>Date Obtained: Nov 2022</p>
+            </div>
+    
+            <div class="certification">
+                <img src="./Js.jpeg" alt="Certification Name">
+                <h3>Javascript</h3>
+                <p>Issuing Organization: Simplilearn</p>
+                <p>Date Obtained: Oct 2022</p>
+            </div>
+    
+            <div class="certification">
+                <img src="./EthicalHacking.jpeg" alt="Certification Name">
+                <h3>Cyber security and Ethical Hacking</h3>
+                <p>Issuing Organization: Ditto Security</p>
+                <p>Date Obtained: April 2022</p>
+            </div>
+    
+            <div class="certification">
+                <img src="./MSOffice.jpeg" alt="Certification Name">
+                <h3>MS Office</h3>
+                <p>Issuing Organization: Prajwal Systems</p>
+                <p>Date Obtained: May 2012</p>
+            </div>
+
+            <div class="certification">
+                <img src="./ScienceFest.jpeg" alt="Certification Name">
+                <h3>Science In Action (Volunteer)</h3>
+                <p>Issuing Organization: B.V Jagadeesh Science Centre <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbspJawaharlal Nehru Planetarium</p>
+                <p>Date Obtained: May 2012</p>
+            </div>
+            
+            <!-- Repeat the above div for each certification -->
+        </div>
+    </main>
+
+    <footer>
+        <p>Contact: koushikrajusr@gmail.com</p>
+        <!-- <p><a href="https://www.linkedin.com/in/yourprofile">LinkedIn Profile</a></p> -->
+    </footer>
+</body>
+</html>

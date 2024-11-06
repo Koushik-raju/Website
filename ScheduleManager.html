@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schedule Manager</title>
+    <style>
+        /* Global styles for the body */
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #121212; /* Darker background */
+            color: #e0e0e0; /* Light text color */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Full height */
+        }
+
+        /* Styling for the form container */
+        form {
+            background-color: #1f1f1f; /* Dark form background */
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.7); /* Deeper shadow for depth */
+            width: 100%;
+            max-width: 600px; /* Maximum width */
+            margin-bottom: 30px;
+            transition: all 0.3s ease; /* Smooth transition for hover effects */
+        }
+
+        /* Form inputs with better design */
+        input[type="text"], input[type="date"], input[type="time"], textarea {
+            background-color: #282828; /* Dark input fields */
+            border: 2px solid #555; /* Soft border */
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            width: 100%;
+            color: #fff; /* White text for readability */
+            font-size: 16px; /* Increased font size for better readability */
+            transition: all 0.3s ease; /* Transition effect */
+        }
+
+        /* Input hover and focus effects */
+        input:focus, textarea:focus {
+            border-color: #76ff03; /* Bright green on focus */
+            outline: none; /* Remove default outline */
+        }
+
+        /* Styling for the button */
+        button {
+            background-color: #76ff03; /* Bright button color */
+            color: #000;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease; /* Smooth button effects */
+            font-size: 16px; /* Font size for button */
+            width: 100%; /* Full width */
+        }
+
+        /* Button hover effects */
+        button:hover {
+            background-color: #64dd17; /* Slightly darker on hover */
+            transform: scale(1.05); /* Slightly enlarge button */
+        }
+
+        /* Event list styling */
+        #event-list {
+            width: 100%;
+            max-width: 600px; /* Maximum width */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between events */
+            margin-top: 20px; /* Space above the list */
+        }
+
+        /* Event item styling */
+        .checkbox-item {
+            background-color: #2b2b2b; /* Dark item background */
+            padding: 20px;
+            display: flex;
+            align-items: center; /* Center align */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Soft shadow */
+            transition: all 0.3s ease; /* Smooth transition */
+            opacity: 1; /* Initial opacity for fade-in */
+            animation: fadeIn 0.5s ease; /* Animation for fade-in */
+        }
+
+        /* Toggle Switch Styles */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px; /* Width of the switch */
+            height: 28px; /* Height of the switch */
+            margin-right: 15px; /* Space between switch and text */
+        }
+
+        .toggle-checkbox {
+            opacity: 0; /* Hide default checkbox */
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc; /* Gray background */
+            transition: .4s; /* Smooth transition */
+            border-radius: 34px; /* Round corners */
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 24px; /* Height of the toggle */
+            width: 24px; /* Width of the toggle */
+            left: 4px; /* Left padding */
+            bottom: 2px; /* Bottom padding */
+            background-color: white; /* White toggle */
+            transition: .4s; /* Smooth transition */
+            border-radius: 50%; /* Round toggle */
+        }
+
+        /* Checked state */
+        .toggle-checkbox:checked + .slider {
+            background-color: #76ff03; /* Green background when checked */
+        }
+
+        .toggle-checkbox:checked + .slider:before {
+            transform: translateX(22px); /* Move toggle to the right */
+        }
+
+        /* Styling for event details */
+        .event-details {
+            display: flex; /* Flexbox for layout */
+            flex-direction: row; /* Row direction */
+            justify-content: space-between; /* Space between items */
+            flex-grow: 1; /* Allow to grow */
+            gap: 10px; /* Space between details */
+        }
+
+        .event-details p {
+            margin: 0; /* Remove default margin */
+            color: #e0e0e0; /* Light text for event details */
+            flex-grow: 1; /* Flex grow for flexibility */
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            form {
+                padding: 20px; /* Reduce padding */
+            }
+
+            button {
+                padding: 14px; /* Button padding */
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px; /* Smaller padding for mobile */
+            }
+
+            input[type="text"], input[type="date"], input[type="time"], textarea {
+                font-size: 14px; /* Smaller font size for mobile */
+                padding: 10px; /* Smaller padding for inputs */
+            }
+        }
+
+        /* Animation keyframes */
+        @keyframes fadeIn {
+            from {
+                opacity: 0; /* Start from transparent */
+            }
+            to {
+                opacity: 1; /* Fade in to visible */
+            }
+        }
+
+        /* Notification styles */
+        .notification {
+            background-color: #76ff03; /* Bright notification background */
+            color: #000; /* Black text */
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 10px;
+            transition: opacity 0.5s; /* Smooth fade-out */
+            opacity: 0; /* Start hidden */
+            visibility: hidden; /* Hidden initially */
+            position: fixed; /* Position fixed to bottom */
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%); /* Center the notification */
+            z-index: 1000; /* Above other content */
+        }
+
+        .notification.show {
+            opacity: 1; /* Show notification */
+            visibility: visible; /* Make it visible */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Event entry form -->
+    <form id="event-form">
+        <input type="text" id="event-input" placeholder="Enter event" required>
+        <textarea id="note-input" placeholder="Enter notes" rows="4"></textarea>
+        <input type="date" id="date-input" placeholder="Select date (optional)">
+        <input type="time" id="time-input" placeholder="Select time (optional)">
+        <button type="submit">Add Event</button>
+    </form>
+
+    <!-- Event list container -->
+    <div id="event-list"></div>
+
+    <!-- Notification message -->
+    <div id="notification" class="notification">Event added successfully!</div>
+
+    <script>
+        // Function to save events to localStorage
+        function saveEvents(events) {
+            localStorage.setItem('eventList', JSON.stringify(events)); // Save events as a JSON string
+        }
+    
+        // Function to load events from localStorage
+        function loadEvents() {
+            const savedEvents = localStorage.getItem('eventList'); // Retrieve events from localStorage
+            return savedEvents ? JSON.parse(savedEvents) : []; // Parse JSON or return empty array
+        }
+    
+        // Function to render saved events
+        function renderEvents() {
+            const events = loadEvents(); // Load events
+            events.forEach(event => createCheckboxItem(event)); // Create checkbox for each event
+        }
+    
+        // Function to create a checkbox item for each event
+        function createCheckboxItem(event) {
+            const eventList = document.getElementById('event-list'); // Get event list container
+    
+            const checkboxItem = document.createElement('div'); // Create a new checkbox item
+            checkboxItem.classList.add('checkbox-item');
+    
+            // Create checkbox input
+            const checkbox = document.createElement('input'); 
+            checkbox.type = 'checkbox';
+            checkbox.classList.add('toggle-checkbox');
+            checkbox.id = event.id; // Set checkbox id to event id
+    
+            // Create toggle switch
+            const switchLabel = document.createElement('label');
+            switchLabel.classList.add('switch');
+            switchLabel.htmlFor = event.id; // Associate label with checkbox
+            switchLabel.appendChild(checkbox); // Append checkbox to label
+            const slider = document.createElement('span');
+            slider.classList.add('slider');
+            switchLabel.appendChild(slider); // Append slider to label
+    
+            // Create event details container
+            const eventDetails = document.createElement('div');
+            eventDetails.classList.add('event-details');
+    
+            // Create event text
+            const eventText = document.createElement('p');
+            eventText.textContent = `${event.name} - ${event.date} ${event.time || ''}`; // Event name, date, and time
+            eventDetails.appendChild(eventText); // Add text to details container
+    
+            // Create notes text
+            const notesText = document.createElement('p');
+            notesText.textContent = event.notes || ''; // Add notes if present
+            notesText.style.fontStyle = 'italic'; // Italic style for notes
+            eventDetails.appendChild(notesText); // Add notes to details container
+    
+            // Append elements to checkbox item
+            checkboxItem.appendChild(switchLabel); // Add switch label to checkbox item
+            checkboxItem.appendChild(eventDetails); // Add details to checkbox item
+            eventList.appendChild(checkboxItem); // Add checkbox item to event list
+    
+            // Event listener for checkbox
+            checkbox.addEventListener('change', () => {
+                if (checkbox.checked) {
+                    eventList.removeChild(checkboxItem); // Remove checkbox item when checked
+                    notifyUser('Event completed and removed!'); // Notify user
+                    removeEvent(event.id); // Remove from localStorage
+                }
+            });
+        }
+    
+        // Function to notify user
+        function notifyUser(message) {
+            const notification = document.getElementById('notification'); // Get notification element
+            notification.textContent = message; // Set notification message
+            notification.classList.add('show'); // Show notification
+            setTimeout(() => {
+                notification.classList.remove('show'); // Hide notification after timeout
+            }, 3000); // Timeout duration
+        }
+    
+        // Function to remove event from localStorage
+        function removeEvent(eventId) {
+            let events = loadEvents(); // Load existing events
+            events = events.filter(event => event.id !== eventId); // Filter out the removed event
+            saveEvents(events); // Save updated events
+        }
+    
+        // Add event listener to form submission
+        document.getElementById('event-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent default form submission
+            const eventName = document.getElementById('event-input').value; // Get event name
+            const eventDate = document.getElementById('date-input').value; // Get event date
+            const eventTime = document.getElementById('time-input').value; // Get event time
+            const eventNotes = document.getElementById('note-input').value; // Get event notes
+            const eventId = Date.now().toString(); // Generate unique event ID
+    
+            const newEvent = {
+                id: eventId,
+                name: eventName,
+                date: eventDate,
+                time: eventTime,
+                notes: eventNotes // Include notes in the event object
+            };
+    
+            const events = loadEvents(); // Load current events
+            events.push(newEvent); // Add new event to the array
+            saveEvents(events); // Save events
+    
+            notifyUser('Event added successfully!'); // Notify user
+            createCheckboxItem(newEvent); // Create checkbox item for new event
+    
+            // Reset form fields
+            document.getElementById('event-form').reset(); // Reset form
+        });
+    
+        // Initial render of events on page load
+        renderEvents(); // Render existing events
+    </script>
+    
+</body>
+</html>
